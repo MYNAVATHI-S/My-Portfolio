@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project</title>
+
+  <!-- Fonts and Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="icon" type="image/x-icon" href="./assets/images/logo.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+  
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #0f0f0f, #1a1a1a);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    a.btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: transparent;
+      color: white;
+      font-weight: 800;
+      border-radius: 30px;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    a.btn:hover {
+      background: #16ffff;
+      box-shadow: 0 0 35px rgba(0, 255, 255, 0.9);
+      transform: scale(1.05);
+      color: #000;
+    }
+
+    .btn1 {
+      padding: 10px 25px;
+      background: transparent;
+      border: 2px solid #0ef;
+      color: white;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      margin-bottom: 20px;
+      display: inline-block;
+      perspective: 800px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    .btn1:hover {
+      background: #0ef;
+      color: black;
+      box-shadow: 0 0 20px #0ef;
+      transform: rotateX(8deg) rotateY(12deg) scale(1.05);
+    }
+
+    .heading {
+      text-align: center;
+      font-size: 2.7rem;
+      margin: 40px 0 20px;
+      color: #0ef;
+      
+    }
+
+    .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 0 20px 60px;
+    }
+
+    /* Base services box style */
+    .services-box {
+      background: #222;
+      border-radius: 20px;
+      padding: 30px;
+      width: 360px;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    /* Starting transform for slide-left */
+    .slide-left {
+      opacity: 0;
+      transform: translateX(-100%) scale(0.8);
+      animation: slideInLeft 0.8s forwards;
+      animation-delay: 0.3s;
+    }
+
+    /* Starting transform for slide-right */
+    .slide-right {
+      opacity: 0;
+      transform: translateX(100%) scale(0.8);
+      animation: slideInRight 0.8s forwards;
+      animation-delay: 0.5s;
+    }
+
+    .services-box:hover {
+      transform: scale(1.03) rotateX(3deg) rotateY(3deg);
+      box-shadow: 0 0 25px #00bcd4;
+    }
+
+    /* Slide-in animations */
+    @keyframes slideInLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-100%) scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    @keyframes slideInRight {
+      0% {
+        opacity: 0;
+        transform: translateX(100%) scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    .services-box i {
+      font-size: 45px;
+      color: #0ef;
+    }
+
+    .services-box h3 {
+      font-size: 1.3rem;
+      margin-top: 15px;
+      color: #fff;
+    }
+
+    .services-box p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    .about-img, .about-img1 {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 15px;
+      margin: 20px 0;
+      position: relative;
+      box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+    }
+
+    .about-img img, .about-img1 img {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      filter: brightness(1.1) contrast(1.1);
+    }
+
+    /* Scroll to Top Button */
+    .scroll-to-top-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 15px;
+      background: #0ef;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 20px #00eeff;
+      display: none;
+      z-index: 999;
+    }
+
+
+
+  </style>
+</head>
+
+<body>
+  <br><br><a href="index.html" class="btn1">Home</a>
+
+  <section class="services" id="services">
+    <h2 class="heading"><span>Projects</span></h2>
+
+    <div class="services-container">
+      <div class="services-box slide-left" style="animation-delay: 0.2s;">
+        <i class='bx bx-code-alt'></i>
+        <h3>Line Follower Robot Using L298N Module</h3>
+        <div class="about-img">
+          <img src="./assets/images/project 1.jpg" alt="Line Follower Robot"/>
+        </div>
+        <h3>Objectives</h3>
+        <p>
+          - Design and develop a simple line-following robot using the L298N module.<br>
+          - Implement IR sensors to detect and follow a line.<br>
+          - Control the motors using the L298N driver module and a microcontroller (e.g., Arduino).<br>
+          - Ensure smooth navigation and responsiveness to turns and obstacles.
+        </p><br>
+        <a href="https://circuitdigest.com/electronic-circuits/line-follower-robot" target="_blank"   class="btn">Read <span style="font-size: 1.2em;"></span>more</a>
+      </div>
+
+      <div class="services-box slide-right" style="animation-delay: 0.4s;">
+        <i class='bx bxs-paint'></i>
+        <h3>Automatic Number Plate Detection And Tyre Killer</h3>
+        <div class="about-img1">
+          <img src="./assets/images/project 2.jpeg" alt="Automatic Number Plate Detection"/>
+        </div>
+        <h3>Objectives</h3>
+        <p>
+          - Implement automatic traffic light control and theft vehicle detection.<br>
+          - Use image processing for number plate recognition.<br>
+          - Integrate road spikes to puncture tires for unauthorized vehicles.
+        </p><br>
+        <a href="https://www.ijert.org/implementation-of-smart-tyre-killer" target="_blank" class="btn">Read <span style="font-size: 1.2em;"></span>more</a>
+      </div>
+
+      <div class="services-box slide-left" style="animation-delay: 0.6s;">
+          <i class='bx bx-code-alt'></i>
+        <h3>RFID-Based Access Control System with RTC, Google Sheet Integration, and Servo Motor Interface </h3>
+        <div class="about-img">
+          <img src="./assets/images/project 3.png" alt="Obstacle Avoidance Robot"/>
+        </div>
+        <h3>Objectives</h3>
+        <p>
+          - Implement an RFID-based system to securely identify authorized users for access control. <br>
+            -  Integrate a Real-Time Clock (RTC) module to timestamp every access event accurately.<br>
+            -  Enable logging of access records (user ID, time, date) to Google Sheets for real-time remote monitoring and data storage.<br>
+            -  Interface a Servo motor to physically control the locking/unlocking mechanism of the door or gate.<br>
+             - Ensure the system provides automated and reliable access management with easy tracking of entry logs.
+             
+        </p><br>
+        <a href="https://docs.google.com/document/d/1H9nwhfgbbnTGkPJjKVwSZ8n6ucSU9Pfqh3xPRLQVzxw/edit?tab=t.0" target="_blank" class="btn">Read <span style="font-size: 1.2em;"></span>more</a>
+      </div>
+
+      <div class="services-box slide-right" style="animation-delay: 0.8s;">
+        <i class='bx bxs-paint'></i>
+        <h3>PCB Design for Accelerometer-Driven LED Direction Indicator with XIAO ESP32-C3</h3>
+        <div class="about-img1">
+          <img src="./assets/images/project 4.png" alt="Quadcopter Drone"/>
+        </div>
+        <h3>Objectives</h3>
+        <p>
+          - Design and develop a compact PCB integrating Seeed Studio XIAO ESP32-C3 and an accelerometer sensor.<br>
+         - Use accelerometer data to detect the device’s orientation and movement direction.<br>
+         - Blink LEDs corresponding to the detected direction to provide visual feedback.<br>
+         - Implement efficient real-time sensor data processing on the ESP32-C3 microcontroller.<br>
+         - Ensure reliable and responsive LED control based on accelerometer inputs.
+        </p><br>
+        <a href="https://docs.google.com/document/d/1wy-P_ENmnhRElSexUhLlk1zth0-yQ0qPMraoLpZDj8c/edit?tab=t.0" target="_blank" class="btn">Read <span style="font-size: 1.2em;"></span>more</a>
+      </div>
+
+       <div class="services-box slide-right" style="animation-delay: 0.8s;">
+        <i class='bx bxs-paint'></i>
+        <h3> DC Metal Gear Motor Using ESP32-C3 and L298N Motor Driver</h3>
+        <div class="about-img1">
+          <img src="./assets/images/project5.png" alt="Quadcopter Drone"/>
+        </div>
+        <h3>Objectives</h3>
+        <p>
+          - DDesign and implement a motor control system using the ESP32-C3 microcontroller and L298N motor driver.<br>
+
+        -  Drive and control the speed and direction of a DC metal gear motor using PWM signals.<br>
+
+         - Enable forward, reverse, stop, and variable speed functionalities through GPIO-based controls or wireless input.<br>
+
+         - Ensure efficient current handling for high-torque metal gear motors using dual H-bridge configuration of L298N.<br>
+
+         - Integrate safety features such as overcurrent protection and motor stall detection if required.<br>
+
+         - Provide real-time motor feedback via serial monitor or wireless protocols (e.g., ESP-NOW, WiFi, BLE).
+        </p><br>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vQhCogjSi0Xc2kABG-lKmCkBuMWhDFLTQcHYb-GHj22N6AnOJq9GYSSsO4kttqsu6NB-GSYB3RuxNZm/pub" target="_blank" class="btn">Read <span style="font-size: 1.2em;"></span>more</a>
+      </div>
+
+    <div class="services-box slide-left" style="animation-delay: 1s;">
+  <i class='bx bx-paper-plane'></i>
+  <h3>Cardboard Drone – SPARTA (Surveillance and Payload Aircraft for Rural, Tactical, and Agricultural Missions)</h3>
+  <div class="about-img">
+    <video controls style="width: 100%; border-radius: 12px; box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
+      <source src="./assets/video/SPARTA- Cardboard Drone.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <h3>Objectives</h3>
+  <p>
+    - Develop an eco-friendly, single-motor drone using cardboard and 3D-printed parts.<br>
+    - Utilize ESP32-C3 modules for both transmitter and receiver.<br>
+    - Employ LoRa SX1278 for long-range, low-power bidirectional communication.<br>
+    - Implement differential wing actuation using servos to control direction and stability.<br>
+    - Enable real-time telemetry and mission-based payload deployment in rural and tactical zones.
+  </p><br>
+  <a href="https://theconversation.com/ukraine-war-australian-made-cardboard-drones-used-to-attack-russian-airfield-show-how-innovation-is-key-to-modern-warfare-212629" target="_blank" class="btn">Read <span style="font-size: 1.2em;"></span>more</a>
+</div>
+
+
+    </div>
+
+  </section>
+<button id="scrollToTopBtn" class="scroll-to-top-btn">▲</button>
+
+
+
+ <script>
+  // Scroll to top button visibility
+  const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      scrollToTopBtn.style.display = 'block';
+    } else {
+      scrollToTopBtn.style.display = 'none';
+    }
+  });
+
+  // Smooth scroll to top
+  scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+</script>
+
+
+</body>
+</html>

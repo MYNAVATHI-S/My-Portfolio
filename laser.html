@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lamp Light Sphere Design</title>
+
+  <!-- Google Fonts & Boxicons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="icon" type="image/x-icon" href="./assets/images/logo.png" />
+  <style>
+    :root {
+      --bg-color: #1f242d;
+      --second-bg-color: #323946;
+      --text-color: #fff;
+      --main-color: #0ef;
+      --light-glow: rgba(0, 239, 255, 0.8);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html, body {
+      font-size: 68.5%;
+      background: var(--bg-color);
+      color: whitesmoke;
+      min-height: 100vh;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    header {
+      margin-top: 10rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4.5rem;
+      font-weight: 700;
+      color: whitesmoke;
+    }
+
+    h2 {
+      font-size: 3.5rem;
+      color: var(--main-color);
+      margin: 3rem 0 2rem;
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    p, li, a {
+      font-size: 1.6rem;
+      font-weight: 300;
+    }
+
+    a {
+      color: var(--main-color);
+      text-decoration: underline;
+    }
+
+    
+    .top-buttons {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      display: flex;
+      gap: 1rem;
+      z-index: 1000;
+    }
+
+    .btn1 {
+      padding: 10px 25px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      border: 2px solid var(--main-color);
+      background: transparent;
+      color: white;
+     margin-left: 1150px;
+    }
+     .btn1:hover {
+      background: #0ef;
+      color: black;
+      box-shadow: 0 0 20px #0ef;
+      transform: rotateX(8deg) rotateY(12deg) scale(1.05);
+    }
+.btn {
+      padding: 10px 25px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      border: 2px solid var(--main-color);
+      background: transparent;
+      color: white;
+      
+    }
+    .btn:hover {
+      background: #0ef;
+      color: black;
+      box-shadow: 0 0 20px #0ef;
+      transform: rotateX(8deg) rotateY(12deg) scale(1.05);
+    }
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  
+    .design-methodology {
+      max-width: 900px;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .step {
+      background-color: var(--second-bg-color);
+      padding: 3rem;
+      border-radius: 10px;
+      margin-bottom: 3rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      animation: slideIn 1s forwards;
+      opacity: 0;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .step:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px var(--light-glow);
+    }
+
+    .step img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 1rem;
+      border-radius: 10px;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Scroll-to-top button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 15px;
+      background: #0ef;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 20px #0ef;
+      display: none;
+      z-index: 999;
+      font-size: 1.5rem;
+    }
+
+    .link-section {
+      margin: 4rem auto;
+      text-align: center;
+    }
+
+    .link-section a {
+      font-weight: 500;
+      font-size: 1.8rem;
+      display: inline-block;
+      padding: 1rem 2rem;
+      border: 2px solid var(--main-color);
+      border-radius: 12px;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .link-section a:hover {
+      background: var(--main-color);
+      color: #000;
+      box-shadow: 0 0 15px var(--main-color);
+    }
+  </style>
+</head>
+
+<body>
+ <!-- Top Navigation Buttons -->
+  <div class="top-buttons">
+    <a href="assignment.html" class="btn">Assignment</a>
+    <a href="index.html" class="btn1">Home</a>
+  </div>
+  <!-- Main Header -->
+  <header>
+    <h1>Lamp Light Sphere Design</h1>
+  </header>
+
+  <!-- Design Methodology Section -->
+  <section class="design-methodology">
+    <h2>Design Methodology</h2>
+
+    <div class="step">
+      <h3>Steps in Fusion 360</h3>
+      <ol>
+        <li>Create a 50 mm sphere as reference</li>
+        <li>Sketch and extrude ribs (50 mm height, 2 mm thick)</li>
+        <li>Use circular pattern tool</li>
+        <li>Create rings and cut slots</li>
+        <li>Use join/cut for assembly</li>
+        <li>Add fillets or chamfers</li>
+      </ol>
+    </div>
+
+
+   
+
+    <div class="step">
+      <h3>Design the Horizontal Rings</h3>
+      <ol>
+        <li>Create a new sketch on the XZ plane.</li>
+        <li>Draw a circle:
+          <ul>
+            <li>Outer diameter = 50 mm</li>
+            <li>Inner hole = 20 mm</li>
+            <li>Thickness = 2 mm</li>
+          </ul>
+        </li>
+        <li>Cut slots:
+          <ul>
+            <li>Slot width = 2 mm</li>
+            <li>Slots = number of ribs</li>
+          </ul>
+        </li>
+        <li>Extrude to 2 mm</li>
+        <li>Create 2–3 rings (top, middle, bottom)</li>
+      </ol>
+      <img src="./assets/images/photo2.png" alt="Step 3 Image">
+    </div>
+<div class="step">
+      <h3>Dimensions and Number of Shapes</h3>
+      <ul>
+        <li><strong>Sphere diameter:</strong> 50 mm</li>
+        <li><strong>Ribs:</strong>
+          <ul>
+            <li>Number of ribs: About 8</li>
+            <li>Rib thickness: ~2 mm</li>
+            <li>Rib height: 50 mm</li>
+            <li>Rib spacing: 360° ÷ number of ribs</li>
+          </ul>
+        </li>
+      </ul>
+      <img src="./assets/images/photo1.png" alt="Step 2 Image">
+    </div>
+
+
+ <div class="step">
+      <h3>Basic Structure</h3>
+      <ul>
+        <li><strong>Sphere:</strong> Defines the overall shape.</li>
+        <li><strong>Ribs:</strong> Created using splines or arc-based sketches.</li>
+        <li><strong>Rings:</strong> Created using circles and cutouts for rib slots.</li>
+      </ul>
+      <img src="./assets/images/photo.png" alt="Step 1 Image">
+    </div>
+
+
+   <div class="step">
+      <h3> LaserCAD</h3>
+      <ul>
+        <li>Right-click sketch → Save as DXF</li>
+        <li>Import DXF into LaserCAD for cutting</li>
+      </ul>
+      <img src="./assets/images/laser.png" alt="Step 6 Image">
+    </div>
+ 
+ 
+
+    <div class="step">
+      <h3>Assembly and Final Touch</h3>
+      <ul>
+        <li>Ensure ribs fit in slots</li>
+        <li>Adjust spacing/dimensions</li>
+        <li>Use Combine to merge parts</li>
+        <li>Apply Fillets for aesthetics</li>
+      </ul>
+      <img src="./assets/images/1.jpg" alt="Step 5 Image">
+    </div>
+
+
+</section>
+
+   
+ 
+
+  <!-- Google Docs Link Section -->
+  <section class="link-section">
+    <h2>Full Document Link</h2>
+    <a href="https://docs.google.com/document/d/e/2PACX-1vSahG4XlIspiRzXOhRHyGFSLyL1ubmUMXnPb2l-2gxigsYAL2VO7sJ385remryYwfq7JMsecnKvRytt/pub"
+       target="_blank">View Full Google Doc</a>
+  </section>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" title="Go to top">▲</button>
+
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      scrollTopBtn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+    };
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+
+</body>
+</html>

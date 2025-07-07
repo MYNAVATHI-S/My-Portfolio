@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FSR406 Sensor Interface Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins&display=swap" rel="stylesheet">
+   <link rel="icon" type="image/x-icon" href="./assets/images/logo.png" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f0f0f;
+      color: #00ffee;
+      padding: 2rem;
+      margin: 0;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin-top: 90px;
+      background: #111;
+      margin-left: 220px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ffcc;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 5s linear infinite;
+    }
+
+    h2 {
+      color: #00ffff;
+      font-family: 'Orbitron', sans-serif;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    img {
+      max-width: 100%;
+      border: 2px solid #00ffcc;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+
+    a.code {
+      border: 3px solid #00ffcc;
+      border-radius: 25px;
+      margin: 2rem 0;
+      color: white;
+      padding: 8px 20px;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .code-block {
+      background: #1e1e1e;
+      color: #c5f3ff;
+      text-align: left;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      overflow-x: auto;
+      max-height: 400px;
+      white-space: pre;
+      font-family: monospace;
+      box-shadow: 0 0 10px #00ffff33;
+    }
+
+    ul, ol {
+      text-align: left;
+      display: inline-block;
+      color: #d5faff;
+      margin: 1rem auto;
+    }
+
+    .top-buttons {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      display: flex;
+      gap: 1rem;
+      z-index: 1000;
+    }
+
+    .btn1, .btn {
+      padding: 10px 25px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      border: 2px solid #00ffee;
+      background: transparent;
+      color: white;
+    }
+
+    .btn1 {
+      margin-left: 1150px;
+    }
+
+    .btn1:hover, .btn:hover {
+      background: #0ef;
+      color: black;
+      box-shadow: 0 0 20px #0ef;
+      transform: rotateX(8deg) rotateY(12deg) scale(1.05);
+    }
+
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 15px;
+      background: #0ef;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 20px #0ef;
+      display: none;
+      z-index: 999;
+      font-size: 1.5rem;
+    }
+
+    video {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px;
+      border: 2px solid #00ffee;
+      box-shadow: 0 0 15px #0ef3;
+      margin: 1rem 0;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-buttons">
+    <a href="assignment.html" class="btn">Assignment</a>
+    <a href="index.html" class="btn1">Home</a>
+  </div><br>
+
+  <div class="container">
+    <h1>FSR406 Square Force Sensor Pressure Sensor 44mm</h1>
+
+    <h2>1. Connecting FSR to Mixed Signal Oscilloscope (MSO)</h2>
+    <ol>
+      <li>Connect one FSR terminal to 5V</li>
+      <li>Connect other terminal to CH1 probe & 10kΩ resistor</li>
+      <li>Other side of resistor to GND</li>
+      <li>Connect oscilloscope ground clip to GND</li>
+    </ol>
+    <img src="./assets/images/fsr1.jpg" alt="FSR to MSO setup">
+
+    <h3>Oscilloscope Settings</h3>
+    <ul>
+      <li>Voltage Scale: 500mV/div</li>
+      <li>Time Base: 1ms/div</li>
+      <li>Trigger: Normal or Auto</li>
+      <li>Coupling: DC/AC depending on analysis</li>
+    </ul>
+
+    <h3>Noise Reduction</h3>
+    <ul>
+      <li>Use RC filter: 10kΩ + 0.1µF</li>
+      <li>Enable averaging mode</li>
+      <li>Use shielded wires</li>
+    </ul>
+
+    <h2>2. Tinkercad Voltage Divider with Arduino</h2>
+    <ol>
+      <li>FSR + 10kΩ resistor form a voltage divider</li>
+      <li>Middle node connects to A0 on Arduino</li>
+      <li>Monitor values via Serial Monitor or Oscilloscope</li>
+    </ol>
+    <img src="./assets/images/tinker.png" alt="Tinkercad FSR setup">
+
+    <h2>3. ESP8266 + FSR + Arduino IDE</h2>
+    <ol>
+      <li>Connect one FSR pin to 3.3V, other to A0</li>
+      <li>Connect 10kΩ resistor between A0 and GND</li>
+      <li>Upload the following code using Arduino IDE</li>
+    </ol>
+    <img src="./assets/images/fsr.png" alt="FSR with ESP8266 setup">
+
+    <div class="code-block"><pre><code>
+      <h2>Arduino Code</h2>
+#include &lt;ESP8266WiFi.h&gt;
+#include &lt;WiFiClientSecure.h&gt;
+
+const char* ssid = "InnovateTN_Forcers";
+const char* password = "Forged@Forge";
+const char* googleScriptURL = "https://script.google.com/macros/s/AKfycbzEg3sR_rz36F4Z5BFbFrPn4A80QM0Gh89lWzWVrqLF453zQoQLue4v1E0HNf1IZpzC/exec";
+
+#define SENSOR_PIN A0
+WiFiClientSecure client;
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to WiFi...");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nWiFi Connected!");
+  client.setInsecure();
+}
+
+void loop() {
+  int sensorValue = analogRead(SENSOR_PIN);
+  float voltage = (sensorValue / 1023.0) * 3.3;
+
+  Serial.print("Sensor Value: ");
+  Serial.println(sensorValue);
+  Serial.print("Voltage: ");
+  Serial.println(voltage, 3);
+
+  sendToGoogleSheets(sensorValue, voltage);
+  delay(1000);
+}
+
+void sendToGoogleSheets(int value, float voltage) {
+  if (client.connect("script.google.com", 443)) {
+    String url = String(googleScriptURL) + "?value=" + String(value) + "&voltage=" + String(voltage, 3);
+    client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+                 "Host: script.google.com\r\n" +
+                 "Connection: close\r\n\r\n");
+    Serial.println("Data Sent to Google Sheets!");
+  } else {
+    Serial.println("Connection Failed!");
+  }
+}
+</code></pre></div>
+
+    <a href="./assets/code/fsr_wifi_logger.ino" download class="code">Download Arduino Code</a>
+
+    <h2>4. Send FSR Data to Google Sheets</h2>
+    <ol>
+      <li>Create Google Sheet → Extensions → Apps Script</li>
+      <li>Paste script and deploy as Web App (allow anyone access)</li>
+      <li>Copy the deployment URL</li>
+      <li>Use it in the Arduino code above</li>
+    </ol><br>
+
+    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTsQSNkRVAePiENm-9BPKMQbJX-1Bx-qJK3pbhtoqjbbj_MxUtZwTrBQClUXm9fxj6N1yaL2rSDvhuI/pubhtml" class="code" target="_blank">Sensor Google Sheet</a>
+
+    <h2>MSO Simulation </h2>
+    <video src="./assets/video/VID-20250328-WA0004.mp4"  controls playsinline></video>
+
+    <h2>Google Sheet + Arduino</h2>
+    <video src="./assets/video/sensor 2.mp4" controls playsinline></video>
+  </div>
+
+  <button id="scrollTopBtn" title="Go to top">▲</button>
+
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      scrollTopBtn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+    };
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+
+ <script>
+  // Click-to-play video logic
+  document.querySelectorAll(".click-to-play").forEach(video => {
+    video.addEventListener("click", () => {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

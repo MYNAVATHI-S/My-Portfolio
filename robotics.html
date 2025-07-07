@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <link rel="icon" type="image/x-icon" href="./assets/images/logo.png" />
+  <title>Advanced Robotic Arm Assembly</title>
+  <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --second-bg-color: #1c1c1c;
+      --text-color: #ffffff;
+      --main-color: #0ef;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: 1.2rem;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    header {
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 12px;
+    }
+
+    h1 {
+      font-size: 2.0rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #0ef;
+    }
+
+    section {
+      background-color: var(--second-bg-color);
+      padding: 2.5rem;
+      margin: 3rem auto;
+      border-radius: 16px;
+      width: 80%;
+      box-shadow: 0 0 15px rgba(0, 239, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+    }
+
+    section:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(0, 239, 255, 0.6);
+    }
+
+    ul, ol {
+      margin-top: 0.5rem;
+      padding-left: 1.5rem;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, #0ef, #ff00cc);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 12px #0ef;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px #0ef;
+    }
+
+    #videoContainer {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #videoContainer.show {
+      display: block;
+      opacity: 1;
+    }
+
+    video {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 239, 255, 0.4);
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background: #0ef;
+      color: #000;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: none;
+      box-shadow: 0 0 20px #0ef;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #0ef, #a64bf4);
+      color: #fff;
+      box-shadow: 0 0 30px #0ef;
+      transform: scale(1.08);
+    }
+
+    /* Scroll-to-top button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 15px;
+      background: #0ef;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 20px #00eeff;
+      display: none;
+      z-index: 999;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .btn1 {
+      padding: 10px 25px;
+      background: transparent;
+      border: 2px solid #0ef;
+      color: white;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn1:hover {
+      background: #0ef;
+      color: black;
+      box-shadow: 0 0 20px #0ef;
+      transform: rotateX(8deg) rotateY(12deg) scale(1.05);
+    }
+
+    .top-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top buttons in left and right format -->
+  <div class="top-buttons">
+   
+    <a href="assignment.html" class="btn">Assignment</a>
+     <a href="index.html" class="btn1">Home</a>
+  </div>
+
+  <header>
+    <h1>Robotic Arm Assembly Featuring Six Degrees of Freedom</h1>
+  </header>
+
+  <section>
+    <h2>1. Component Overview</h2>
+    <ul>
+      <li><strong>Base Platform</strong> – Provides rotational support</li>
+      <li><strong>Shoulder</strong> – Enables up/down motion</li>
+      <li><strong>Elbow</strong> – Adds extension flexibility</li>
+      <li><strong>Wrist</strong> – Controls tilt and rotation</li>
+      <li><strong>Gripper</strong> – Handles objects</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2. Joint Architecture (6+ DOF)</h2>
+    <ol>
+      <li>Base Yaw</li>
+      <li>Shoulder Pitch</li>
+      <li>Elbow Pitch</li>
+      <li>Wrist Pitch</li>
+      <li>Wrist Roll</li>
+      <li>Gripper Actuation</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>3. Assembly Constraints</h2>
+    <ul>
+      <li>Revolute Joints for moving parts</li>
+      <li>Rigid Joints for fixed structure</li>
+      <li>As-Built Constraints for realism</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Animation Steps</h2>
+    <p>Each joint is triggered step-by-step to mimic real-world automation.</p>
+  </section>
+
+  <section>
+    <h2>5. Final Output (Video)</h2>
+    <p>Exported in 1080p, 30 FPS, high-quality MP4 format.</p><br><br>
+    <button id="playVideo">▶️ Play Animation</button>
+    <div id="videoContainer">
+      <video id="robotArmVideo" controls>
+        <source src="./assets/video/1 (1).mp4" type="video/mp4">
+        Your browser doesn't support HTML5 video.
+      </video>
+    </div>
+  </section>
+
+  <!-- Scroll to top button -->
+  <button id="scrollTopBtn" title="Go to top">▲</button>
+
+  <script>
+    // Play video on button click
+    document.getElementById("playVideo").addEventListener("click", function () {
+      const videoContainer = document.getElementById("videoContainer");
+      videoContainer.classList.add("show");
+      const video = document.getElementById("robotArmVideo");
+      video.load();
+      video.play();
+    });
+
+    // Scroll to top button
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function () {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    scrollTopBtn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>

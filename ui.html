@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Food Share App UI/UX Process</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./assets/images/logo.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #0f0f0f, #1c1c1c);
+      color: white;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color:white;
+      font-size: 2.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .step {
+      background: #111;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ffcc33;
+      margin: 1.5rem auto;
+      max-width: 900px;
+      padding: 25px;
+    }
+
+    .step h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #00ffee;
+    }
+
+    .step-content {
+      font-size: 1rem;
+      color: white;
+      margin-top: 1rem;
+    }
+
+    .step-content img {
+      margin-top: 10px;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ffee44;
+    }
+
+    .top-buttons {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      display: flex;
+      gap: 1rem;
+      z-index: 1000;
+    }
+
+    .btn1 {
+      padding: 10px 25px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      border: 2px solid #00ffee;
+      background: transparent;
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      margin-left: 1200px;
+    }
+.btn {
+      padding: 10px 25px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      border: 2px solid #00ffee;
+      background: transparent;
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      
+    }
+    .btn1:hover,
+    .btn:hover {
+      background: #0ef;
+      color: black;
+      box-shadow: 0 0 20px #0ef;
+      transform: scale(1.05);
+    }
+
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 15px;
+      background: #0ef;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 20px #0ef;
+      display: none;
+      z-index: 999;
+      font-size: 1.5rem;
+    }
+
+    .video-container {
+      max-width: 900px;
+      margin: 3rem auto;
+      text-align: center;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ffee77;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-buttons">
+    <a href="assignment.html" class="btn">Assignment</a>
+    <a href="index.html" class="btn1">Home</a>
+  </div><br>
+
+  <h1>Food Share App UI/UX - Step by Step</h1>
+
+  <div class="step">
+    <h2>Step 1: UI Design in Figma</h2>
+    <div class="step-content">
+<p>Designed wireframes for user flows: Home, Donate, Request, and Track. Focused on accessibility (large buttons, readable fonts) and minimalism. Colors follow food-safe and trust-inducing tones like green, teal, and orange. Used auto-layout, components, and constraints for responsiveness in Figma.</p>    
+  <img src="./assets/images/ui or.png" alt="Figma Design">
+    </div>
+  </div>
+<br><br>
+
+  <div class="step">
+    <h2>Step 2: Export Design Assets</h2>
+    <div class="step-content">
+<p>Downloaded images, SVG icons (from Figma plugins), button states, and spacing guides. Maintained consistent 8px spacing. Organized assets in a design system with tokens (colors, fonts, sizes).</p>      <img src="./assets/images/ui1.png" alt="Export Assets">
+    </div>
+  </div>
+<br><br>
+
+  <div class="step">
+    <h2>Step 3: HTML Structure</h2>
+    <div class="step-content">
+      <p>Built responsive HTML using <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;footer&gt;</code>. Used divs and flex containers for card layouts. Semantic tags ensured accessibility and SEO. Each screen was built as a section with placeholders for buttons, inputs, and cards.</p>
+    </div>
+  </div>
+<br><br>
+
+  <div class="step">
+    <h2>Step 4: CSS Styling</h2>
+    <div class="step-content">
+      <p>Used modern styling: Flexbox, Grid for layouts, variables for colors/fonts, and media queries for responsiveness. Shadows, gradients, hover transitions were added to simulate Figma look. Used a dark mode theme by default with consistent padding, margins, and border-radius values.</p>
+      <img src="./assets/images/ui2.png" alt="CSS Styling">
+    </div>
+  </div>
+<br><br>
+
+  <div class="step">
+    <h2>Step 5: JavaScript Interactions</h2>
+    <div class="step-content">
+      <p>Implemented step toggle, button animations, scroll-to-top, and interaction logic. Plan to later integrate Firebase or Google Sheets for request form data. Added cursor effects and video controls (like play-on-click) for better interactivity.</p>
+      
+  </div>
+<br><br>
+
+  <div class="step">
+    <h2>Step 6: Testing & Iteration</h2>
+    <div class="step-content">
+      <p>Tested across devices (mobile, tablet, desktop). Validated responsiveness and accessibility. Adjusted button hit zones, improved readability, and reduced loading time by optimizing video and image assets. Peer feedback helped fix spacing inconsistencies.</p>
+    </div>
+  </div>
+<br><br>
+
+  <div class="video-container">
+    <h2 style="color:#00ffee;">Figma UI Walkthrough Video</h2>
+    <video controls preload="metadata">
+      <source src="./assets/video/UI.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <button id="scrollTopBtn" title="Go to top">▲</button>
+
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      scrollTopBtn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+    };
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>

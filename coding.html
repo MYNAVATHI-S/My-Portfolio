@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scratch Projects & MIT App Inventor App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="./assets/css/Site.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="icon" type="image/x-icon" href="./assets/images/logo.png" />
+  <style>
+    :root {
+      --bg-color: #1f242d;
+      --second-bg-color: #323946;
+      --text-color: #fff;
+      --main-color: #0ef;
+      --light-glow: rgba(0, 239, 255, 0.8);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: 1.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 3.8rem;
+      text-align: center;
+      font-weight: 700;
+      color: whitesmoke;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInHeader 1s forwards;
+    }
+
+    @keyframes fadeInHeader {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    section {
+      width: 90%;
+      max-width: 900px;
+      margin-bottom: 3rem;
+    }
+
+    .project {
+      margin-bottom: 2rem;
+      background-color: var(--second-bg-color);
+      padding: 5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      animation: slideIn 1s forwards;
+      transition: transform 0.3s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px var(--light-glow);
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateX(-50px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    .project img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 1rem;
+      opacity: 0;
+      animation: fadeInImage 1.5s forwards;
+    }
+
+    @keyframes fadeInImage {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      color: var(--main-color);
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 1.6rem;
+    }
+
+    .project button {
+      background-color: var(--main-color);
+      padding: 1rem 2rem;
+      font-size: 1.6rem;
+      color: var(--text-color);
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .project button:hover {
+      background-color: var(--light-glow);
+    }
+
+    .app-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: var(--second-bg-color);
+      padding: 3rem;
+      border-radius: 10px;
+      width: 40%;
+      opacity: 0;
+      animation: fadeInSection 1s forwards;
+    }
+
+    .app-section:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px var(--light-glow);
+    }
+
+    @keyframes fadeInSection {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Scroll-to-top button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 15px;
+      background: #0ef;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 20px #00eeff;
+      display: none;
+      z-index: 999;
+    }
+
+    .app-section img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInImage 1s forwards;
+    }
+
+    .app-section button {
+      background-color: var(--main-color);
+      padding: 1rem 2rem;
+      font-size: 1.6rem;
+      color: var(--text-color);
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .app-section button:hover {
+      background-color: var(--light-glow);
+    }
+
+    .qrcode {
+      margin-top: 3rem;
+    }
+
+      .btn1 {
+      padding: 10px 25px;
+      background: transparent;
+      border: 2px solid #0ef;
+      color: white;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      margin-left: 1150px;
+      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn1:hover {
+      background: #0ef;
+      color: black;
+      box-shadow: 0 0 20px #0ef;
+      transform: rotateX(8deg) rotateY(12deg) scale(1.05);
+    }
+
+    .top-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+   .btn {
+      padding: 1.5rem 2.5rem;
+      font-size: 1.4rem;
+      background: #0ef;
+      color: #000;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: none;
+      box-shadow: 0 0 20px #0ef;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #0ef, #a64bf4);
+      color: #fff;
+      box-shadow: 0 0 30px #0ef;
+      transform: scale(1.08);
+    }
+  </style>
+</head>
+<body>
+<!-- Top buttons in left and right format -->
+  <div class="top-buttons">
+   
+    <a href="assignment.html" class="btn">Assignment</a>
+     <a href="index.html" class="btn1">Home</a>
+  </div>
+  <header>
+    <h1>Scratch Projects & MIT App Inventor App</h1>
+  </header>
+ 
+
+  <section class="scratch-projects">
+    <div class="project">
+      <h2>Maze Game</h2>
+      <p>The Maze Game challenges players to navigate through a maze while avoiding obstacles. Using arrow keys, the player moves a sprite to reach the goal. The game includes boundaries and logic to detect collisions.
+</p>
+      <br><img src="./assets/images/Picture5.png" alt="Maze Game Screenshot">
+    </div>
+
+    <div class="project">
+      <h2>Apple Catching Game</h2>
+      <p>The Apple Catching Game is a fun challenge where a basket moves left and right to catch falling apples. I used loops and conditional statements to increase difficulty as the game progresses.
+</p>
+      <br><img src="./assets/images/Picture4.png" alt="Apple Catching Game Screenshot">
+    </div>
+
+    <div class="project">
+      <h2>Fun Oreo Story</h2>
+      <p>The Fun Oreo Story is an interactive storytelling project where characters engage in a playful Oreo adventure. It uses dialogues, sound effects, and animations to make the story engaging.
+</p>
+      <img src="./assets/images/Picture3.png" alt="Fun Oreo Story Screenshot">
+    
+    </div>
+  </section>
+
+  <section class="app-section">
+    <h2>Attendance App Using MIT App Inventor</h2>
+    <p>MIT App Inventor is a user-friendly platform for developing mobile applications using block-based coding. I used this tool to create an Attendance App with a face camera feature to capture attendance along with the date and time. The app allows users to click a picture for verification and stores the data automatically. I utilized the Camera and Clock components to take photos and record timestamps. The app saves the attendance records in a database for future reference. </p>
+    <div class="qrcode">
+      <img src="./assets/images/Picture1.png" alt="QR Code 1"><br><br>
+      <img src="./assets/images/Picture2.png" alt="QR Code 2"><br>
+<button onclick="window.open('https://drive.google.com/file/d/1qaFZvCWLLFXZyAbkJXo-iRDd3PfQrgvL/view', '_blank')">
+  Click to Download App
+</button>
+
+     <button onclick="window.open('https://docs.google.com/document/d/e/2PACX-1vSs0t1bIZqeIUhp4jPtE7I74mx8Ib9srFyv9Fez2JpvVueMCGVYjf3Ptf8Gsblyvg/pub', '_blank')">
+  More Details
+</button>
+
+    </div>
+  </section>
+  <!-- Scroll to top button -->
+  <button id="scrollTopBtn" title="Go to top">▲</button>
+ 
+ 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    // Show or hide the scroll button
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 200) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    });
+
+    // Scroll to top when clicked
+    scrollTopBtn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>

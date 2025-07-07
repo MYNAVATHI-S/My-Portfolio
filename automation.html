@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment 5: Industrial Automation</title>
+    <link rel="icon" type="image/x-icon" href="./assets/images/logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+      color: #e0f7ff;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .assignment-hero {
+      background: linear-gradient(135deg, #101d2c, #052e38);
+      padding: 60px 20px;
+      text-align: center;
+      color: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
+    }
+
+    .assignment-hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      color: #00ffff;
+    }
+
+    .assignment-subtitle {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #ccfaff;
+    }
+
+    .navigation-buttons {
+      margin-top: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .nav-button {
+      padding: 10px 22px;
+      background: transparent;
+      border: 2px solid #00ffee;
+      color: #00ffee;
+      border-radius: 25px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px #00ffee44;
+    }
+
+    .nav-button:hover {
+      background: #00ffee;
+      color: #000;
+      box-shadow: 0 0 20px #00ffee99;
+      transform: translateY(-2px);
+    }
+
+    .content-section {
+      padding: 50px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .content-box {
+      margin-bottom: 60px;
+      padding: 25px;
+      background: #1a1a1a;
+      border-radius: 12px;
+      box-shadow: 0 0 30px #00ffcc22;
+    }
+
+    h2 {
+      color: #00ffff;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .section-divider {
+      height: 3px;
+      width: 60px;
+      background: #00ffff;
+      margin: 10px auto 20px;
+      border-radius: 2px;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: #d6f8ff;
+    }
+
+    blockquote {
+      font-style: italic;
+      background: #252525;
+      padding: 15px;
+      border-left: 4px solid #00ffee;
+      margin-top: 20px;
+      border-radius: 6px;
+      color: #bbfaff;
+    }
+
+    .application-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .application-card {
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px #00ffee22;
+    }
+
+    .application-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #00ffee;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 10px;
+      margin-top: 15px;
+      box-shadow: 0 0 20px #00ffee55;
+    }
+
+   
+ 
+    @media (max-width: 768px) {
+      .assignment-hero h1 {
+        font-size: 2rem;
+      }
+      .nav-button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+ .top-buttons {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      display: flex;
+      gap: 1rem;
+      z-index: 1000;
+    }
+
+    .btn1 {
+      padding: 10px 25px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      border: 2px solid var(--main-color);
+      background: transparent;
+      color: white;
+     margin-left: 1200px;
+     font-size: 20px;
+    }
+     .btn1:hover {
+      background: #0ef;
+      color: black;
+      box-shadow: 0 0 20px #0ef;
+      transform: rotateX(8deg) rotateY(12deg) scale(1.05);
+    }
+.btn {
+      padding: 10px 25px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: 800;
+      border: 2px solid var(--main-color);
+      background: transparent;
+      color: white;
+      font-size: 20px;
+      
+    }
+    .btn:hover {
+      background: #0ef;
+      color: black;
+      box-shadow: 0 0 20px #0ef;
+      transform: rotateX(8deg) rotateY(12deg) scale(1.05);
+    }
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+   /* Scroll-to-top button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 15px;
+      background: #0ef;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 20px #0ef;
+      display: none;
+      z-index: 999;
+      font-size: 1.5rem;
+    }
+
+  </style>
+</head>
+<body>
+ <!-- Top Navigation Buttons -->
+  <div class="top-buttons">
+    <a href="assignment.html" class="btn">Assignment</a>
+    <a href="index.html" class="btn1">Home</a>
+  </div><br>
+  <div class="assignment-hero">
+    <div class="container">
+      <h1>Industrial Automation</h1>
+      <p class="assignment-subtitle">Sequential Pneumatic Circuit Design & Control Systems</p>
+      <div class="navigation-buttons">
+        <a href="#introduction" class="nav-button">Introduction</a>
+        <a href="#objective" class="nav-button">Objective</a>
+        <a href="#pneumatic-circuits" class="nav-button">Pneumatic Circuits</a>
+        <a href="#applications" class="nav-button">Applications</a>
+        <a href="#conclusion" class="nav-button">Conclusion</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="container">
+      <!-- Introduction -->
+      <section id="introduction" class="content-box">
+        <h2>Introduction</h2>
+        <div class="section-divider"></div>
+        <p>Industrial automation uses control systems such as pneumatic circuits to automate tasks with high reliability, speed, and safety. This assignment focuses on designing and simulating a sequential pneumatic circuit using a real-world logic sequence (A+, B+, A−, B−).</p>
+      </section>
+
+      <!-- Objective -->
+      <section id="objective" class="content-box">
+        <h2>Objective</h2>
+        <div class="section-divider"></div>
+        <p>Design a pneumatic circuit for a machine that performs the following cylinder sequence upon pressing a push button:</p>
+        <blockquote><strong>Sequence:</strong> A+ → B+ → A− → B−</blockquote>
+        <h3 style="color:#00ffee; margin-top: 20px;">Sequence Explanation:</h3>
+        <ul style="margin-top: 15px; padding-left: 20px; color: #d6f8ff;">
+          <li><strong>A+ (Cylinder A extends):</strong> Activated by button press.</li>
+          <li><strong>B+ (Cylinder B extends):</strong> Follows A+ via sensor trigger.</li>
+          <li><strong>A− (Cylinder A retracts):</strong> Triggered after B+ completes.</li>
+          <li><strong>B− (Cylinder B retracts):</strong> Final retraction step to reset cycle.</li>
+        </ul>
+      </section>
+
+   <!-- Pneumatic Circuits -->
+<section id="pneumatic-circuits" class="content-box">
+  <h2>Pneumatic Circuits</h2>
+  <div class="section-divider"></div>
+  <img src="./assets/images/aut.png" alt="Pneumatic circuit diagram" style="width:100%; border-radius:10px; box-shadow: 0 0 15px #00ffee88;">
+
+  <h3 style="color:#00ffee; margin-top: 25px;">Working Explanation:</h3>
+  <p>
+    The sequential pneumatic circuit shown above executes the logic A+ → B+ → A− → B−, where two double-acting cylinders (A and B) are controlled in a specific order using pneumatic components like 5/2 directional control valves (DCVs), push button actuators, sensors (limit switches or roller levers), and logic valves.
+  </p>
+
+  <h4 style="color:#ccfaff; margin-top:20px;">Key Components:</h4>
+  <ul style="color: #d6f8ff;">
+    <li><strong>Cylinders A and B:</strong> Double-acting cylinders that extend and retract based on the air flow direction.</li>
+    <li><strong>5/2 DCVs:</strong> Direct the compressed air to either side of the cylinders for extension or retraction.</li>
+    <li><strong>Push Button:</strong> Initiates the circuit operation.</li>
+    <li><strong>Roller Lever Valves:</strong> Used as position sensors to detect when cylinders fully extend or retract, triggering the next step.</li>
+    <li><strong>AND/OR Valves:</strong> Implement pneumatic logic to ensure that operations happen only under the right conditions.</li>
+  </ul>
+
+  <h4 style="color:#ccfaff; margin-top:20px;">Sequence Breakdown:</h4>
+  <ul style="color: #d6f8ff;">
+    <li><strong>A+:</strong> When the push button is pressed, the DCV for Cylinder A is actuated, allowing air to extend Cylinder A.</li>
+    <li><strong>B+:</strong> Once Cylinder A reaches its end position, a roller valve is triggered, causing the DCV for Cylinder B to actuate and extend it.</li>
+    <li><strong>A−:</strong> The extension of Cylinder B activates another sensor that switches the DCV for Cylinder A back, causing Cylinder A to retract.</li>
+    <li><strong>B−:</strong> Finally, once Cylinder A has fully retracted, another sensor is triggered to retract Cylinder B, thus completing the cycle.</li>
+  </ul>
+
+  <blockquote style="margin-top: 25px;">
+    "Using pneumatic logic instead of electronic control allows simpler automation in rugged environments like factories and workshops."
+  </blockquote>
+</section>
+
+
+      <!-- Applications -->
+      <section id="applications" class="content-box">
+        <h2>Applications</h2>
+        <div class="section-divider"></div>
+        <p>The A+ → B+ → A− → B− sequence is used in industrial automation systems that require coordinated motion of actuators in a fixed order.</p>
+        <div class="application-cards">
+          <div class="application-card">
+            <div class="application-icon"><i class="fas fa-industry"></i></div>
+            <h4>Assembly Lines</h4>
+            <p>Pick-and-place tasks using grippers and linear actuators.</p>
+          </div>
+          <div class="application-card">
+            <div class="application-icon"><i class="fas fa-box"></i></div>
+            <h4>Packaging Systems</h4>
+            <p>Fold, insert, and seal packages in a step-by-step sequence.</p>
+          </div>
+          <div class="application-card">
+            <div class="application-icon"><i class="fas fa-pills"></i></div>
+            <h4>Pharmaceutical Filling</h4>
+            <p>Precisely inject, cap, and label vials with timing logic.</p>
+          </div>
+          <div class="application-card">
+            <div class="application-icon"><i class="fas fa-cogs"></i></div>
+            <h4>Testing Rigs</h4>
+            <p>Sequentially apply pressure or electric probes to test units.</p>
+          </div>
+        </div>
+        <blockquote style="margin-top: 30px;">
+          "Precision sequencing ensures smoother automation and reliable operation."
+        </blockquote>
+      </section>
+
+      <!-- Conclusion -->
+      <section id="conclusion" class="content-box">
+        <h2>Conclusion</h2>
+        <div class="section-divider"></div>
+        <p>Mastering pneumatic sequencing provides a solid foundation for automation engineers to build safe, efficient, and intelligent control systems.</p>
+      </section>
+    </div>
+  </div>
+
+ <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" title="Go to top">▲</button>
+
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      scrollTopBtn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+    };
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>

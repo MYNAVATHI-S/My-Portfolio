@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart RFID Gate System</title>
+    <link rel="icon" type="image/x-icon" href="./assets/images/logo.png" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+       background: #0f0f0f;
+      color: #f0f0f0;
+    }
+    header {
+      background: #111;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+    h2 {
+      color: #00eaff;
+      margin-top: 2rem;
+    }
+    pre {
+      background-color: #111;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+    code {
+      color: #00ff9f;
+      font-size: 0.9rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    .section {
+      border-left: 4px solid #00eaff;
+      padding-left: 1rem;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 10px 20px;
+      background: #00eaff;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background: #00bcd4;
+    }
+    iframe, img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-top: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    a.doc-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #00ffcc;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+   
+    .top-buttons {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      display: flex;
+      gap: 1rem;
+      z-index: 1000;
+    }
+/* Scroll-to-top button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 15px;
+      background: #0ef;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 20px #0ef;
+      display: none;
+      z-index: 999;
+      font-size: 1.5rem;
+    }
+     .code-block {
+      background: #1e1e1e;
+      color: #c5f3ff;
+      text-align: left;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      overflow-x: auto;
+      max-height: 400px;
+      white-space: pre;
+      font-family: monospace;
+      box-shadow: 0 0 10px #00ffff33;
+    }
+
+    .btn1 {
+      padding: 10px 25px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      border: 2px solid var(--main-color);
+      background: transparent;
+      color: white;
+     margin-left: 1150px;
+    }
+     .btn1:hover {
+      background: #0ef;
+      color: black;
+      box-shadow: 0 0 20px #0ef;
+      transform: rotateX(8deg) rotateY(12deg) scale(1.05);
+    }
+.btn {
+      padding: 10px 25px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      border: 2px solid var(--main-color);
+      background: transparent;
+      color: white;
+      
+    }
+    .btn:hover {
+      background: #0ef;
+      color: black;
+      box-shadow: 0 0 20px #0ef;
+      transform: rotateX(8deg) rotateY(12deg) scale(1.05);
+    }
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  
+  </style>
+</head>
+<body>
+ <!-- Top Navigation Buttons -->
+  <div class="top-buttons">
+    <a href="assignment.html" class="btn">Assignment</a>
+    <a href="index.html" class="btn1">Home</a>
+  </div>
+
+  <header>
+    Smart RFID Access Gate – ESP32 System Overview
+  </header>
+
+  <div class="container">
+
+    <div class="section">
+      <h2>🧰 Components Required</h2>
+      <ul>
+        <li>ESP32 Dev Board</li>
+        <li>RC522 RFID Module</li>
+        <li>16x2 LCD (I2C)</li>
+        <li>SG90 Servo Motor</li>
+        <li>DS1302 RTC Module</li>
+        <li>LED + Buzzer</li>
+        <li>Wi-Fi Network + Google Sheets</li>
+      </ul>
+    </div><br><br>
+
+    <div class="section">
+      <h2>🔌 Wiring Summary</h2>
+      <ul>
+        <li>RC522 to ESP32: SDA→GPIO5, SCK→GPIO18, MOSI→GPIO23, MISO→GPIO19, RST→GPIO4</li>
+        <li>LCD I2C: SDA→GPIO21, SCL→GPIO22</li>
+        <li>Servo: Signal→GPIO13</li>
+        <li>RTC DS1302: CLK→GPIO14, DAT→GPIO27, RST→GPIO26</li>
+        <li>LED: GPIO2 | Buzzer: GPIO15</li>
+      </ul>
+    </div><br><br>
+
+    <div class="section">
+      <h2>📊 Operation Flow</h2>
+      <ol>
+        <li>System boots & connects to Wi-Fi</li>
+        <li>LCD displays "Scan your card"</li>
+        <li>Reads RFID tag & compares UID</li>
+        <li>If authorized → Grant access + open gate</li>
+        <li>Else → Blink LED, buzz alert</li>
+        <li>Logs UID, status & timestamp to Google Sheets</li>
+      </ol>
+    </div><br><br>
+
+    <div class="section">
+      <h2>🧪 Click to Flow</h2>
+       <a href="./assets/images/sheet.png" target="_blank" class="btn">Flowchart</a> 
+      <div id="logBox" style="margin-top:1rem;"></div>
+    </div>
+<br><br>
+    <div class="section">
+      <h2>🔐 UID Comparison Logic (Snippet)</h2>
+      <div class="code-block"><pre><code>
+#include &lt; Wire.h &gt;
+#include &lt; LiquidCrystal_I2C.h &gt;
+#include &lt; SPI.h &gt;
+#include &lt; MFRC522.h &gt;
+#include &lt; ESP32Servo.h &gt;
+#include &lt; ThreeWire.h &gt;
+#include &lt; RtcDS1302.h &gt;
+
+#define SS_PIN 5
+#define RST_PIN 4
+#define LED_PIN 2
+#define BUZZER_PIN 15
+#define SERVO_PIN 13
+
+#define DS1302_CLK 14  // SCLK
+#define DS1302_IO  27  // DAT
+#define DS1302_CE  26  // RST
+
+byte knownUID[] = { 0xED, 0x0D, 0x0C, 0x32 };
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+MFRC522 mfrc522(SS_PIN, RST_PIN);
+Servo gateServo;
+
+ThreeWire myWire(DS1302_IO, DS1302_CLK, DS1302_CE); // IO, SCLK, CE
+RtcDS1302<ThreeWire> Rtc(myWire);
+
+void setup() {
+  Serial.begin(115200);
+  SPI.begin();
+  mfrc522.PCD_Init();
+
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(BUZZER_PIN, OUTPUT);
+
+  lcd.begin();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("Scan your card");
+
+  gateServo.setPeriodHertz(50);
+  gateServo.attach(SERVO_PIN, 500, 2400);  // Signal pin for servo
+  gateServo.write(0); // Start at 0°
+
+  // RTC Setup
+  Rtc.Begin();
+  RtcDateTime customTime(2025, 4, 19, 15, 45, 00); // YYYY, MM, DD, HH, MM, SS
+  Rtc.SetDateTime(customTime);
+
+  if (!Rtc.IsDateTimeValid()) {
+    Serial.println("RTC lost confidence in the DateTime!");
+  }
+
+  if (!Rtc.GetIsRunning()) {
+    Serial.println("RTC was not running. Starting it now...");
+    Rtc.SetIsRunning(true);
+  }
+
+  // Print initial time
+  RtcDateTime now = Rtc.GetDateTime();
+  printDateTime(now);
+}
+
+void loop() {
+  if (!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()) {
+    return;
+  }
+
+  bool match = true;
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("UID: ");
+
+  for (byte i = 0; i < mfrc522.uid.size; i++) {
+    lcd.print(mfrc522.uid.uidByte[i], HEX);
+    if (i < mfrc522.uid.size - 1) lcd.print(":");
+    if (mfrc522.uid.uidByte[i] != knownUID[i]) match = false;
+  }
+
+  if (match) {
+    Serial.println("✅ Access Granted");
+    lcd.setCursor(0, 1);
+    lcd.print("Access: Granted");
+    digitalWrite(LED_PIN, HIGH);
+    digitalWrite(BUZZER_PIN, HIGH);
+    gateServo.write(180);   // Open gate
+    delay(500);
+    digitalWrite(LED_PIN, LOW);
+    digitalWrite(BUZZER_PIN, LOW);
+    delay(3000);
+    gateServo.write(0);     // Close gate
+  } else {
+    Serial.println("❌ Access Denied");
+    lcd.setCursor(0, 1);
+    lcd.print("Access: Denied");
+    for (int i = 0; i < 3; i++) {
+      digitalWrite(LED_PIN, HIGH);
+      digitalWrite(BUZZER_PIN, HIGH);
+      delay(200);
+      digitalWrite(LED_PIN, LOW);
+      digitalWrite(BUZZER_PIN, LOW);
+      delay(200);
+    }
+    gateServo.write(0);  // Keep gate closed
+  }
+
+  // Get current time from RTC
+  RtcDateTime now = Rtc.GetDateTime();
+  printDateTime(now);  // Print the current time from RTC
+
+  mfrc522.PICC_HaltA();
+  mfrc522.PCD_StopCrypto1();
+  delay(1000);
+}
+
+void printDateTime(const RtcDateTime& dt) {
+  char datestring[20];
+  snprintf_P(datestring,
+             sizeof(datestring),
+             PSTR("%02u/%02u/%04u %02u:%02u:%02u"),
+             dt.Month(),
+             dt.Day(),
+             dt.Year(),
+             dt.Hour(),
+             dt.Minute(),
+             dt.Second());
+  Serial.println(datestring);
+}
+
+      </code></pre></div>
+    </div><br><br>
+ <div class="section">
+      <h2>🖼️ System Diagram</h2>
+      <img src="./assets/images/project 3.png" alt="RFID Gate System Diagram">
+    </div><br><br>
+
+    <div class="section">
+      <h2>🌐 Send to Google Sheets (POST JSON)</h2>
+  <div class="code-block"> <pre><code>
+#include &lt; Wire.h &gt;                // I2C communication for LCD and RTC
+#include &lt; LiquidCrystal_I2C.h &gt;    // I2C LCD library
+#include &lt; SPI.h &gt;                    // SPI communication for RFID
+#include &lt; MFRC522.h  &gt;                // RFID library
+#include &lt; ESP32Servo.h &gt;              // Servo motor control for ESP32
+#include &lt; ThreeWire.h &gt;              // 3-wire RTC interface
+#include &lt; RtcDS1302.h &gt;               // RTC DS1302 library
+#include &lt; WiFi.h &gt;                    // WiFi for ESP32
+#include &lt; HTTPClient.h &gt;              // HTTP POST to Google Sheets
+
+
+// ---------------------- Pins & Constants ----------------------
+#define SS_PIN 5
+#define RST_PIN 4
+#define LED_PIN 2
+#define BUZZER_PIN 15
+#define SERVO_PIN 13
+
+#define DS1302_CLK 14  // SCLK
+#define DS1302_IO  27  // DAT
+#define DS1302_CE  26  // RST
+
+byte knownUID[] = { 0xED, 0x0D, 0x0C, 0x32 };
+
+// ---------------------- Components ----------------------
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+MFRC522 mfrc522(SS_PIN, RST_PIN);
+Servo gateServo;
+
+ThreeWire myWire(DS1302_IO, DS1302_CLK, DS1302_CE); 
+RtcDS1302<ThreeWire> Rtc(myWire);
+
+// ---------------------- Wi-Fi Setup ----------------------
+const char* ssid = "YOUR_WIFI_SSID";             // <-- Change this
+const char* password = "YOUR_WIFI_PASSWORD";     // <-- Change this
+const String scriptURL = "https://script.google.com/macros/s/XXXXXXXXXXXX/exec"; // <-- Your Google Script URL
+
+// ---------------------- Setup ----------------------
+void setup() {
+  Serial.begin(115200);
+  SPI.begin();
+  mfrc522.PCD_Init();
+
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(BUZZER_PIN, OUTPUT);
+
+  lcd.begin();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("Scan your card");
+
+  gateServo.setPeriodHertz(50);
+  gateServo.attach(SERVO_PIN, 500, 2400);
+  gateServo.write(0);
+
+  // RTC setup
+  Rtc.Begin();
+  RtcDateTime customTime(2025, 4, 19, 15, 45, 00); // Set initial RTC time
+  Rtc.SetDateTime(customTime);
+
+  if (!Rtc.IsDateTimeValid()) {
+    Serial.println("RTC DateTime invalid!");
+  }
+  if (!Rtc.GetIsRunning()) {
+    Serial.println("Starting RTC...");
+    Rtc.SetIsRunning(true);
+  }
+
+  // Wi-Fi connect
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to WiFi");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nWiFi connected.");
+}
+
+// ---------------------- Main Loop ----------------------
+void loop() {
+  if (!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()) {
+    return;
+  }
+
+  bool match = true;
+  String uidStr = "";
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("UID: ");
+
+  for (byte i = 0; i < mfrc522.uid.size; i++) {
+    byte val = mfrc522.uid.uidByte[i];
+    uidStr += String(val, HEX);
+    lcd.print(val, HEX);
+    if (i < mfrc522.uid.size - 1) {
+      lcd.print(":");
+      uidStr += ":";
+    }
+    if (val != knownUID[i]) match = false;
+  }
+
+  uidStr.toUpperCase(); // Optional: Make UID uppercase
+
+  if (match) {
+    Serial.println("✅ Access Granted");
+    lcd.setCursor(0, 1);
+    lcd.print("Access: Granted");
+    digitalWrite(LED_PIN, HIGH);
+    digitalWrite(BUZZER_PIN, HIGH);
+    gateServo.write(180);
+    delay(500);
+    digitalWrite(LED_PIN, LOW);
+    digitalWrite(BUZZER_PIN, LOW);
+    delay(3000);
+    gateServo.write(0);
+    sendToGoogleSheet(uidStr, "Granted");
+  } else {
+    Serial.println("❌ Access Denied");
+    lcd.setCursor(0, 1);
+    lcd.print("Access: Denied");
+    for (int i = 0; i < 3; i++) {
+      digitalWrite(LED_PIN, HIGH);
+      digitalWrite(BUZZER_PIN, HIGH);
+      delay(200);
+      digitalWrite(LED_PIN, LOW);
+      digitalWrite(BUZZER_PIN, LOW);
+      delay(200);
+    }
+    sendToGoogleSheet(uidStr, "Denied");
+  }
+
+  RtcDateTime now = Rtc.GetDateTime();
+  printDateTime(now);
+
+  mfrc522.PICC_HaltA();
+  mfrc522.PCD_StopCrypto1();
+  delay(1000);
+}
+
+// ---------------------- Send to Google Sheet ----------------------
+void sendToGoogleSheet(String uid, String status) {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    String fullURL = scriptURL + "?uid=" + uid + "&status=" + status;
+    http.begin(fullURL);
+    int httpCode = http.GET();
+    if (httpCode > 0) {
+      Serial.print("Data sent: ");
+      Serial.println(httpCode);
+    } else {
+      Serial.print("Failed to send. Code: ");
+      Serial.println(httpCode);
+    }
+    http.end();
+  } else {
+    Serial.println("WiFi not connected");
+  }
+}
+
+// ---------------------- Print RTC Time ----------------------
+void printDateTime(const RtcDateTime& dt) {
+  char buf[20];
+  snprintf_P(buf, sizeof(buf), PSTR("%02u/%02u/%04u %02u:%02u:%02u"),
+             dt.Month(), dt.Day(), dt.Year(),
+             dt.Hour(), dt.Minute(), dt.Second());
+  Serial.println(buf);
+}
+
+      </code></pre></div>
+    </div>
+<br><br>
+   
+<div class="section">
+  <h2>🎬 Video</h2>
+  <video class="click-to-play" width="560" height="315" controls playsinline poster="./assets/img/preview.jpg">
+    <source src="./assets/video/sensor.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top">▲</button>
+
+<script>
+  // Scroll to Top Button Logic
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  window.onscroll = function () {
+    scrollTopBtn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+  };
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Click-to-play video logic
+  document.querySelectorAll(".click-to-play").forEach(video => {
+    video.addEventListener("click", () => {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

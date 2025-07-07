@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Me - Mynavathi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="icon" type="image/x-icon" href="./assets/images/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    .btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #0ef, #8f00ff);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 40px;
+      box-shadow: 0 0 10px #0ef, 0 0 20px #8f00ff;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #8f00ff, #0ef);
+      transform: scale(1.05);
+    }
+
+    header {
+      max-width: 1000px;
+      margin: 100px auto 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .about-img img {
+      width: 280px;
+      border-radius: 45%;
+      box-shadow: 0 0 12px #0ef;
+    }
+
+    .content {
+      flex: 1;
+      min-width: 350px;
+      padding: 10px;
+      margin-left: 10px;
+    }
+
+    .heading {
+      font-size: 2.5rem;
+      color: rgb(39, 204, 216);
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-shadow: 0 0 8px rgb(40, 79, 82), 0 0 20px #8f00ff;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      background: #1a1a1a;
+      border: 2px solid #0ef;
+      color: #fff;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tab:hover,
+    .tab.active {
+      background: #0ef;
+      color: #000;
+      font-weight: 600;
+      box-shadow: 0 0 10px #0ef;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tab-content p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #ccc;
+      max-width: 800px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .about-img img {
+        width: 200px;
+      }
+
+      .heading {
+        font-size: 2rem;
+      }
+
+      .tab {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+      }
+
+      .content {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="index.html" class="btn"><i class='bx bx-arrow-back'></i>Back</a>
+
+  <header>
+    <div class="about-img">
+      <img src="./assets/images/myna (2).jpg" alt="Mynavathi's Profile Picture" />
+    </div>
+    <div class="content">
+      <h1 class="heading">About Me</h1>
+
+      <div class="tabs">
+        <div class="tab active" onclick="openTab('intro')">Intro</div>
+        <div class="tab" onclick="openTab('skills')">Skills</div>
+        <div class="tab" onclick="openTab('goals')">Goals</div>
+      </div>
+
+      <div id="intro" class="tab-content active">
+        <p>
+        &nbsp;   Hi, I'm <strong>Mynavathi S</strong>, a third-year Electronics and Communication Engineering student at GCE, Salem. I’m passionate about building innovative solutions that blend engineering with creativity. I love working on embedded systems, digital electronics, and prototyping real-world tech.
+        </p>
+      </div>
+
+      <div id="skills" class="tab-content">
+        <p>
+         &nbsp; I'm skilled in Arduino, Blynk, Fusion 360, ESP32, LTSpice, and designing end-to-end systems for smart electronics projects. I'm also confident with front-end web development using HTML, CSS, JavaScript. I have experience in MySQL, SQL, PHP, and managing server-side systems, enabling me to create full-stack solutions.
+        </p>
+      </div>
+
+      <div id="goals" class="tab-content">
+        <p>
+         &nbsp;  My goal is to excel in the field of Electronics and Communication Engineering by building innovative embedded systems that solve real-world problems. I’m passionate about integrating hardware and software to develop efficient, reliable, and scalable solutions for applications like IoT, automation, and smart systems. I aspire to contribute to impactful projects that improve everyday life and advance technology in a meaningful way.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function openTab(tabId) {
+      const tabs = document.querySelectorAll(".tab");
+      const contents = document.querySelectorAll(".tab-content");
+
+      tabs.forEach(tab => tab.classList.remove("active"));
+      contents.forEach(content => content.classList.remove("active"));
+
+      document.getElementById(tabId).classList.add("active");
+      event.target.classList.add("active");
+    }
+  </script>
+</body>
+</html>
